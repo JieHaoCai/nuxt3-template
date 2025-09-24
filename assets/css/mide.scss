@@ -1,0 +1,51 @@
+$list: (
+    'phone': (
+        0px,
+        768px
+    ),
+    'ipad':(
+        769px,
+        1024px
+    ),
+    'pc': 1025px
+);
+
+
+@use "sass:list";
+@use "sass:meta";
+@use "sass:map";
+
+@mixin browserType($name) {
+    $value: map.get($list, $name);
+    @if meta.type-of($value) == 'list' {
+        // 取出数组项
+        $min: list.nth($value, 1);
+        $max: list.nth($value, 2);
+        @media (min-width: $min) and (max-width: $max) {
+        // 样式插槽
+            @content;
+        }
+    } @else {
+        @media (min-width: $value) {
+            @content;
+        }
+    }
+}
+@include browserType('phone'){
+    .notphone-is-show{
+      display: none !important;
+    }
+}
+@include browserType('ipad') {
+    .ipad-is-show,
+    .phone-is-show {
+        display: none !important;
+    }
+}
+
+@include browserType('pc') {
+    .pc-is-show,
+    .phone-is-show {
+        display: none !important;
+    }
+}
