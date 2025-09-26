@@ -1,3 +1,9 @@
+
+
+@use "sass:list";
+@use "sass:meta";
+@use "sass:map";
+
 $list: (
     'phone': (
         0px,
@@ -10,10 +16,6 @@ $list: (
     'pc': 1025px
 );
 
-
-@use "sass:list";
-@use "sass:meta";
-@use "sass:map";
 
 @mixin browserType($name) {
     $value: map.get($list, $name);

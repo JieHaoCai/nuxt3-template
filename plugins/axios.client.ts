@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default defineNuxtPlugin({
   name:'axios',
-  dependsOn:['localStorage'],
+  dependsOn:['localStorage'], //需要等待缓存插件加载完毕
   setup(nuxtApp){
       const { $localStorage } = useNuxtApp()
       // 创建 axios 实例

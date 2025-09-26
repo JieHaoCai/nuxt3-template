@@ -5,11 +5,13 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "start": "nuxt start --port 3002",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxtjs/i18n": "10.1.0",
     "@nuxtjs/sitemap": "7.4.7",
     "@pinia/nuxt": "^0.11.2",
     "axios": "^1.12.2",

@@ -43,13 +43,80 @@ export default defineNuxtConfig({
      ],
     }
   },
-  css:[  "~/assets/css/mide.scss",
+  css:[  
+    "~/assets/css/mide.scss",
     "~/assets/css/reset.css",
     "~/assets/font/iconfont.css",
-    "~/assets/css/templateReset.css",],
+    "~/assets/css/templateReset.css",
+  ],
   compatibilityDate: '2025-07-15',
-  devtools: { enabled: true },
-  modules: ['@pinia/nuxt', "@nuxtjs/sitemap"],
+  devtools: { enabled: false },
+  modules: ['@pinia/nuxt', "@nuxtjs/sitemap", "@nuxtjs/i18n"],
+  //国际化相关配置
+  i18n: {
+    defaultLocale: "en",
+    locales: [
+      {
+        code: "en",
+        iso: "en-US",
+        name: "English"
+      },
+      {
+        code: "zh-CN",
+        iso: "zh-CN",
+        name: "简体中文"
+      },
+      {
+        code: "ar",
+        iso: "ar",
+         name: "العربية",
+      },
+      {
+        code: "de",
+        iso: "de",
+        name: "Deutsch",
+      },
+      {
+        code: "fr",
+        iso: "fr",
+      },
+      {
+        code: "ja",
+        iso: "ja",
+      },
+      {
+        code: "es",
+        iso: "es",
+        name: "español",
+      },
+      {
+        code: "it",
+        iso: "it",
+        name: "Italiano",
+      },
+      {
+        code: "tr",
+        iso: "tr",
+        name: "Türkçe",
+      },
+      {
+        code: "vi",
+        iso: "vi",
+        name: "Tiếng Việt",
+      },
+      {
+        code: "ko",
+        iso: "ko",
+        name: "한국인",
+      },
+    ],
+    vueI18n:"./i18n.config.ts",
+    strategy: "prefix_except_default",
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: "i18n_redirected",
+    }
+  },
   vite:{
     server:{
       proxy:{
