@@ -1,9 +1,8 @@
-import { useI18n } from 'vue-i18n'
-export const useSeo = () => {
+export const useHrefLangs = () => {
   const route = useRoute()
   const { t, locales } = useI18n()
   
-  const generateSeo = () => {
+  const generateHrefLangs = () => {
     const links = []
     const canonicalUrl = `https://aimangatranslator.com${route.path}`
     
@@ -44,5 +43,5 @@ export const useSeo = () => {
     }
   }
 
-  return { generateSeo }
+  return { generateHrefLangs }
 }

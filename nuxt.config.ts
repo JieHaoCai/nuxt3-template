@@ -12,35 +12,57 @@ export default defineNuxtConfig({
           async: true,
         },
         {
+          id: "gtag-init",
+          innerHTML: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+              analytics_storage: 'denied',
+              ad_user_data:'denied',
+              ad_personalization:'denied',
+              ad_storage: 'denied',
+            });
+            gtag('js', new Date());
+            gtag('config', 'G-8Q9Y0FPDY8');
+          `,
+          type: "text/javascript",
+        },
+        {
           id: "analytics-script",
           src: "https://analytics.aimangatranslator.com/script.js",
           defer: true,
           "data-website-id": "a10e9d0c-dc12-41b3-bb6e-e77bafd4ad5f",
         },
       ],
-    meta: [
-        { charset: "utf-8" },
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
+      noscript:[
         {
-          id: "description",
-          name: "description",
-          content:
-            "Easy2Resume is a professional resume builder that offers multilingual support, including English, Chinese, and Japanese, along with a variety of professional templates. Its user-friendly interface simplifies the resume creation process, enhancing success rates with optimization tips. While it focuses primarily on resume creation and may lack personalized design options, it has helped over 3000 candidates improve their resumes, increasing success rates by 90%.",
+         innerHTML: `<iframe src="https://www.googletagmanager.com/gtag/js?id=G-8Q9Y0FPDY8" height="0" width="0" style="display:none;visibility:hidden;position:absolute;top:-9999px;left:-9999px;" scrolling="no"></iframe>`,
         },
-        {
-          id: "keywords",
-          name: "keywords",
-          content:
-            "resume builder, professional resume, multilingual resume, resume templates, user-friendly interface, resume optimization, resume success, HR attention",
-        },
-        { name: "format-detection", content: "telephone=no" },
-        { name: "baidu-site-verification", content: "codeva-Vk5ocrYUnk" },
       ],
-    link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      // { rel: 'canonical', href: 'https://aimangatranslator.com/' },
-      // { rel: 'preload', href: '/img/bg_img_1.png',  as:"image"},
-     ],
+      meta: [
+          { charset: "utf-8" },
+          { name: "viewport", content: "width=device-width, initial-scale=1" },
+          {
+            id: "description",
+            name: "description",
+            content:
+              "Easy2Resume is a professional resume builder that offers multilingual support, including English, Chinese, and Japanese, along with a variety of professional templates. Its user-friendly interface simplifies the resume creation process, enhancing success rates with optimization tips. While it focuses primarily on resume creation and may lack personalized design options, it has helped over 3000 candidates improve their resumes, increasing success rates by 90%.",
+          },
+          {
+            id: "keywords",
+            name: "keywords",
+            content:
+              "resume builder, professional resume, multilingual resume, resume templates, user-friendly interface, resume optimization, resume success, HR attention",
+          },
+          { name: "format-detection", content: "telephone=no" },
+          { name: "baidu-site-verification", content: "codeva-Vk5ocrYUnk" },
+        ],
+      link: [
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+        { rel: "preload", href: "/img/bg_img_1.png", as: "image" },
+        // { rel: 'canonical', href: 'https://aimangatranslator.com/' },
+        // { rel: 'preload', href: '/img/bg_img_1.png',  as:"image"},
+      ],
     }
   },
   css:[  
@@ -51,66 +73,79 @@ export default defineNuxtConfig({
   ],
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
-  modules: ['@pinia/nuxt', "@nuxtjs/sitemap", "@nuxtjs/i18n"],
+  modules: ['@pinia/nuxt', "@nuxtjs/sitemap", "@nuxtjs/i18n","@element-plus/nuxt"],
   //国际化相关配置
   i18n: {
     defaultLocale: "en",
     locales: [
       {
+        key: "en",
         code: "en",
         iso: "en-US",
         name: "English"
       },
       {
+        key: "zh-CN",
         code: "zh-CN",
         iso: "zh-CN",
         name: "简体中文"
       },
       {
+        key: "ar",
         code: "ar",
         iso: "ar",
-         name: "العربية",
+        name: "العربية",
       },
       {
+        key: "de",
         code: "de",
         iso: "de",
         name: "Deutsch",
       },
       {
+        key: "fr",
         code: "fr",
         iso: "fr",
+        name: "Français",
       },
       {
+        key: "ja",
         code: "ja",
         iso: "ja",
+        name: "日本語",
       },
       {
+        key: "es",
         code: "es",
         iso: "es",
         name: "español",
       },
       {
+        key: "it",
         code: "it",
         iso: "it",
         name: "Italiano",
       },
       {
+        key: "tr",
         code: "tr",
         iso: "tr",
         name: "Türkçe",
       },
       {
+        key: "vi",
         code: "vi",
         iso: "vi",
         name: "Tiếng Việt",
       },
       {
+        key: "ko",
         code: "ko",
         iso: "ko",
         name: "한국인",
       },
     ],
-    vueI18n:"./i18n.config.ts",
+     vueI18n:"./i18n.config.ts",
     strategy: "prefix_except_default",
     detectBrowserLanguage: {
       useCookie: true,

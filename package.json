@@ -11,10 +11,13 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.2",
+    "@element-plus/nuxt": "1.1.4",
     "@nuxtjs/i18n": "10.1.0",
     "@nuxtjs/sitemap": "7.4.7",
     "@pinia/nuxt": "^0.11.2",
     "axios": "^1.12.2",
+    "element-plus": "^2.11.4",
     "nuxt": "^3.19.2",
     "pinia": "^3.0.3",
     "sass": "^1.93.2",

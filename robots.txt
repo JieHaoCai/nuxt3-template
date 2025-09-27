@@ -1,0 +1,7 @@
+User-agent: Twitterbot
+Disallow: *
+Allow: /img
+
+User-agent: *
+Disallow: /*/feed/
+Sitemap: https://aimangatranslator.com/sitemap.xml
