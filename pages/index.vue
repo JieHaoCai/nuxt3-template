@@ -1,8 +1,14 @@
 <template>
     <div class="view">
-      <div class="top-box">
-        {{ t("Logout") }}
-      </div>
+        <div class="container">
+            <div id="showCases" class="show-cases-box">
+              <div class="max-width-1372-auto">
+                  <div class="title">
+                    {{ t("ShowCases") }}
+                  </div>
+              </div>
+            </div>
+        </div>
     </div>
 </template>
 <script setup lang="ts">
@@ -39,6 +45,9 @@ const testStore = () => {
 };
 </script>
 <style scoped lang="scss">
+@use "/assets/css/mide.scss" as *;
+@use "/assets/css/variable.scss" as *;
+
 .view{
   position: relative;
   min-height: 100vh;
@@ -56,4 +65,40 @@ const testStore = () => {
     );
 }
 }
+
+.container{
+  top:0;
+  left:0;
+  margin:0 auto;
+  position: relative;
+  text-align:center;
+  .show-cases-box {
+    padding-top: 200px;
+    background-color: #1a0f14;
+    @include browserType("phone") {
+      margin-top: 8rem;
+      padding: 0;
+    }
+    .title {
+      color: #fff;
+      font-size: 48px;
+      font-weight: bold;
+      line-height: 60px;
+      font-family: "poppinsBold";
+      margin-bottom: 80px;
+      @include browserType("phone") {
+        font-size: 2.4rem;
+        line-height: 3rem;
+        margin-bottom: 3.6rem;
+      }
+    }
+    .show-cases {
+      border-radius: 24px 24px 0px 0px;
+      overflow: hidden;
+      padding: 2px;
+    }
+}
+
+}
+
 </style>

@@ -70,6 +70,7 @@ export default defineNuxtConfig({
     "~/assets/css/reset.css",
     "~/assets/font/iconfont.css",
     "~/assets/css/templateReset.css",
+    "~/assets/css/variable.scss"
   ],
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },

@@ -13,32 +13,35 @@
       <h2 class="visually-hidden" v-html="$t('headings.h2-3')"></h2>
       <h3 class="visually-hidden" v-html="$t('headings.h3-3')"></h3>
     </section>
-    <div class="header-box z-50">
-        <!-- 检测到本地语言 -->
-      <div
-        class="language-tip notphone-is-show"
-        :class="{ hidden: !isShowChangeLang }"
-      >
-        <div class="msg">{{ LangInfo.message }}</div>
-        <div class="confirm btn-gradient" @click="changeLang(browserLanguageLocale.code)">
-          {{ LangInfo.confirmButton }}
-        </div>
-        <div class="cancel btn-gradient" @click="keepCurrentLang">
-          {{ LangInfo.cancelButton }}
-        </div>
-      </div>
-      <!-- 顶部区域  -->
-      <div class="header max-width-1372-auto">
-          <!-- 左侧logo区域 -->
-          <div class="title cursor-pointer notphone-is-show">
-            <img src="../static/img/logo.png" alt="" />
-            AI Manga Translator
+    <nav-bar logo-src="/img/logo.png" logo-text="AI Manga Translator">
+      <template #tip-area>
+            <!-- 检测到本地语言 -->
+            <div
+              class="language-tip notphone-is-show"
+              :class="{ hidden: !isShowChangeLang }"
+            >
+              <div class="msg">{{ LangInfo.message }}</div>
+              <div class="confirm btn-gradient" @click="changeLang(browserLanguageLocale.code)">
+                {{ LangInfo.confirmButton }}
+              </div>
+              <div class="cancel btn-gradient" @click="keepCurrentLang">
+                {{ LangInfo.cancelButton }}
+              </div>
           </div>
-          <!-- 中间导航区域 -->
+      </template>
+      <template #nav>
           <ul class="nav-herader">
+            <!-- 移动端左侧显示更多 -->
             <li class="phone-is-show left-mu">
               <i class="iconfont icon_nav_list"></i>
             </li>
+            <li @click="scrollTo('showCases')" >
+              <i class="iconfont icon_showcase_ico"></i>
+              <p>
+                {{ $t("ShowCases") }}
+              </p>
+            </li>
+            <!-- 多语言切换 -->
             <li class="lang-theme notphone-is-show">
                 <el-dropdown trigger="click"  @command="changeLang">
                   <div class="el-dropdown-link">
@@ -53,8 +56,8 @@
                       <el-dropdown-item
                         :class="{ isSelItem: item.key == locale }"
                         v-for="item in locales"
-                        :command="item.key"
-                        :key="item.key"
+                        :command="item.key as string"
+                        :key="item.key as string"
                       >
                         {{ item.name }}
                         <i
@@ -67,8 +70,8 @@
                 </el-dropdown>
             </li>
           </ul>
-      </div>
-    </div>
+      </template>
+    </nav-bar>
     <slot />
   </div>
 </template>
@@ -132,6 +135,19 @@ const keepCurrentLang = () => {
   //持久化存储
   $localStorage.setItem(IS_SHOW_CHANGE_LANG,"0")
 };
+
+
+
+const scrollTo = (id:string)=>{
+    setTimeout(() => {
+        const targetElement = document.getElementById(id); // 获取目标元素
+        if (!targetElement) return;
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 20);
+}
 
 
 
