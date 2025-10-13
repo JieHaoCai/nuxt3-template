@@ -59,7 +59,6 @@ export default defineNuxtConfig({
         ],
       link: [
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-        { rel: "preload", href: "/img/bg_img_1.png", as: "image" },
         // { rel: 'canonical', href: 'https://aimangatranslator.com/' },
         // { rel: 'preload', href: '/img/bg_img_1.png',  as:"image"},
       ],
@@ -146,7 +145,7 @@ export default defineNuxtConfig({
         name: "한국인",
       },
     ],
-     vueI18n:"./i18n.config.ts",
+    vueI18n:"./i18n.config.ts",
     strategy: "prefix_except_default",
     detectBrowserLanguage: {
       useCookie: true,

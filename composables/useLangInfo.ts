@@ -1,5 +1,11 @@
+import { websiteConfig } from "~/config/website";
+import { I18N_REDIRECTED } from "~/utils/key/key";
+
 export const useLangInfo = () => {
-    const {  locales,locale,getBrowserLocale } = useI18n()
+    const route = useRoute()
+    const {setMeTaDescWithKey,setMetaTitle} = useMetaData()
+    const localePath  = useLocalePath()
+    const {  locales,locale,getBrowserLocale ,setLocale} = useI18n()
      // 获取浏览器语言
     const browserLanguage = getBrowserLocale() || "en";
      let selLangInfo = {
@@ -72,5 +78,25 @@ export const useLangInfo = () => {
         }
     }
 
-    return { LangInfo: selLangInfo[browserLanguage as keyof typeof selLangInfo] || selLangInfo["en"], browserLanguage, supportedLocales ,browserLanguageLocale,setHtmlDIR}
+
+    //切换语言
+   const checkOutLang = async (lang: any) => {
+        await setLocale(lang);
+        useCookie(I18N_REDIRECTED).value = lang;
+        navigateTo(localePath(route.path, lang))
+        setHtmlDIR();
+        if(websiteConfig.seo.metatitle){
+            setMetaTitle()
+        }
+        if(websiteConfig.seo.Metadescription && websiteConfig.seo.metakeywords){
+            setMeTaDescWithKey()
+        }
+    };
+
+    return { 
+        LangInfo: selLangInfo[browserLanguage as keyof typeof selLangInfo] || selLangInfo["en"],
+        browserLanguage, supportedLocales ,
+        browserLanguageLocale,
+        setHtmlDIR,
+        checkOutLang}
 }

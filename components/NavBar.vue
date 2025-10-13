@@ -1,5 +1,5 @@
 <template>
-    <div class="header-box z-50" :style="navStyle">
+    <div class="header-box z-50" :class="{ 'scrolled': isScrolled }" :style="navStyle">
         <!-- 提示区域 -->
         <slot name="tip-area"></slot>
          <!-- 顶部区域  -->
@@ -57,6 +57,27 @@ const props = defineProps({
     }
 })
 
+// 监听滚动，添加毛玻璃效果
+const isScrolled = ref(false)
+
+const handleScroll = () => {
+  if (process.client) {
+    isScrolled.value = window.scrollY > 50
+  }
+}
+
+onMounted(() => {
+  if (process.client) {
+    window.addEventListener('scroll', handleScroll)
+  }
+})
+
+onUnmounted(() => {
+  if (process.client) {
+    window.removeEventListener('scroll', handleScroll)
+  }
+})
+
 </script>
 
 <style scoped lang="scss">
@@ -64,21 +85,37 @@ const props = defineProps({
 @use "assets/css/variable.scss" as *;
 
 .header-box {
-  background-color: rgba(255, 102, 178, 0);
+  background-color: rgba(255, 255, 255, 0);
   position: fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
   z-index: 1002;
+  transition: all 0.3s ease;
+
   @include browserType("phone") {
     max-width: 100vw;
   }
+
+  // 滚动后的毛玻璃效果
+  &.scrolled {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+    // 暗色模式下的毛玻璃效果
+    html.dark & {
+      background-color: rgba(13, 13, 13, 0.8);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+  }
 }
+
 
 .header {
   // width: 1370px;
-  color: #fff;
   padding: 12px 0;
   display: flex;
   align-items: center;
