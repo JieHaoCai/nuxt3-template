@@ -287,6 +287,7 @@ footer {
     }
   }
   .link-ico {
+    margin-top: 20px;
     display: flex;
     align-items: center;
     gap: 12px;

@@ -1,18 +1,6 @@
 <template>
   <div>
-    <!-- <h1 class="visually-hidden" v-html="$t('headings.h1')"></h1>
-    <section>
-      <h2 class="visually-hidden" v-html="$t('headings.h2-1')"></h2>
-      <h3 class="visually-hidden" v-html="$t('headings.h3-1')"></h3>
-    </section>
-    <section>
-      <h2 class="visually-hidden" v-html="$t('headings.h2-2')"></h2>
-      <h3 class="visually-hidden" v-html="$t('headings.h3-2')"></h3>
-    </section>
-    <section>
-      <h2 class="visually-hidden" v-html="$t('headings.h2-3')"></h2>
-      <h3 class="visually-hidden" v-html="$t('headings.h3-3')"></h3>
-    </section> -->
+    <heading></heading>
     <nav-bar :logo-src="websiteConfig.ui.logo" :logo-text="websiteConfig.ui.title">
       <template #tip-area>
             <!-- 检测到本地语言 -->
@@ -30,29 +18,27 @@
           </div>
       </template>
       <template #nav v-if="navBarList.length>0">
-            <nav-bar-item></nav-bar-item>
+            <nav-bar-item @show-drawer="showDrawer = true"></nav-bar-item>
       </template>
     </nav-bar>
-    <slot />
+      <slot />
     <footer-bar></footer-bar>
+    <drawer :model-value="showDrawer" @close="showDrawer = false"></drawer>
   </div>
 </template>
 
 <script setup lang="ts">
 import {websiteConfig} from '~/config/website'
 import {navBarList} from '~/config/navbar-config'
-import { I18N_REDIRECTED,IS_SHOW_CHANGE_LANG } from "~/utils/key/key";
-
+import {IS_SHOW_CHANGE_LANG } from "~/utils/key/key";
 const isShowChangeLang = ref(false); //是否显示切换语言提示
 const { LangInfo, browserLanguageLocale, supportedLocales, setHtmlDIR ,checkOutLang} = useLangInfo();
-const {  locale, setLocale } = useI18n();
-const localePath  = useLocalePath()
-const route = useRoute()
+const {  locale } = useI18n();
 const { $localStorage } = useNuxtApp();
 const { generateHrefLangs } = useHrefLangs();
 const {setMeTaDescWithKey,setMetaTitle} = useMetaData()
 
-
+const showDrawer = ref(false)
 
 onMounted(() => {
   setHtmlDIR();
@@ -71,18 +57,20 @@ onMounted(() => {
 
 //是否展示切换语言顶部提示
 const isShowTopChangeLangTip = ()=>{
-  //获取持久化存储
-  const isShowChangeLangTip = $localStorage.getItem(IS_SHOW_CHANGE_LANG)
-  //如果存在并且明确为保持当前语言，则不展示
-  if(isShowChangeLangTip && isShowChangeLangTip === "0"){
-    isShowChangeLang.value = false
-    return
-  }
-  // 判断当前浏览器语言，是否支持的语言列表中，如果在，则判断是否为当前语言
-  if (supportedLocales.includes(browserLanguageLocale.code)) {
-    locale.value == browserLanguageLocale.code
-      ? (isShowChangeLang.value = false)
-      : (isShowChangeLang.value = true);
+  if(websiteConfig.i18n){
+      //获取持久化存储
+      const isShowChangeLangTip = $localStorage.getItem(IS_SHOW_CHANGE_LANG)
+      //如果存在并且明确为保持当前语言，则不展示
+      if(isShowChangeLangTip && isShowChangeLangTip === "0"){
+        isShowChangeLang.value = false
+        return
+      }
+      // 判断当前浏览器语言，是否支持的语言列表中，如果在，则判断是否为当前语言
+      if (supportedLocales.includes(browserLanguageLocale.code)) {
+        locale.value == browserLanguageLocale.code
+          ? (isShowChangeLang.value = false)
+          : (isShowChangeLang.value = true);
+      }
   }
 }
 
@@ -113,7 +101,9 @@ const keepCurrentLang = () => {
 @use "/assets/css/variable.scss" as *;
 
 
+.el-drawer__body{
 
+}
 
 
 .language-tip {

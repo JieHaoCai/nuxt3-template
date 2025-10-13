@@ -1,4 +1,4 @@
-import type { WebsiteConfig } from "~/types/websiteConfig";
+import type { WebsiteConfig } from "~/types/WebsiteConfig";
 
 //网站配置
 export const websiteConfig:WebsiteConfig = {
@@ -23,6 +23,6 @@ export const websiteConfig:WebsiteConfig = {
         },
         metakeywords:{
             key:"Metakeywords"
-        }
+        },
     }
 }

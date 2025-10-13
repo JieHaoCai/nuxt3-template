@@ -1,3 +1,5 @@
+import type { Component } from "vue"
+
 /**
  * 网站配置接口
  * @interface WebsiteConfig
@@ -54,6 +56,17 @@ export interface WebsiteConfig{
         metakeywords?:{
              /** 对应国际化中的键名 */
              key:string
+        },
+        /**
+         * Headings 配置
+         * @description 用于 SEO 优化的隐藏标题组件配置
+         */
+        Headings?:{
+            /**
+             * Heading 组件
+             * @description 可以是 Vue 组件对象或组件的 import
+             */
+            template: Component | any
         }
     }
 } 

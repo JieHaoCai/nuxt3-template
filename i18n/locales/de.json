@@ -24,5 +24,14 @@
       "title":"RECHTLICHES",
       "policy":"Datenschutzrichtlinie"
     }
+  },
+  "headings": {
+    "h1": "KI-gestützte Online-Manga-Übersetzung",
+    "h2-1": "Laden Sie Manga sofort hoch und übersetzen Sie sie, wählen Sie Ihre bevorzugte Übersetzungs-Engine",
+    "h3-1": "So laden Sie Ihren Manga hoch und übersetzen ihn, Top-Übersetzungs-Engines, die wir unterstützen",
+    "h2-2": "Präzise Manga-Übersetzungsfunktionen, von KI-Manga-Übersetzer unterstützte Sprachen",
+    "h3-2": "Manga-Übersetzung ohne Veränderung des Originals, unterstützte Übersetzungssprachen und -Engines",
+    "h2-3": "Häufig gestellte Fragen - FAQ",
+    "h3-3": "Wie gewährleistet der KI-Manga-Übersetzer Übersetzungsgenauigkeit? Kann ich verschiedene Übersetzungs-Engines wählen? Ist der KI-Manga-Übersetzer kostenlos? Wie schützt der KI-Manga-Übersetzer den originalen Manga-Stil?"
   }
 }

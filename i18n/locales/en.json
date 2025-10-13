@@ -24,5 +24,14 @@
       "title":"LEGAL",
       "policy":"Privacy Policy"
     }
+  },
+  "headings": {
+    "h1": "AI-Powered Online Manga Translation",
+    "h2-1": "Instantly Upload and Translate Manga, Choose Your Preferred Translation Engine",
+    "h3-1": "How to Upload and Translate Your Manga, Top Translation Engines We Support",
+    "h2-2": "Precise Manga Translation Features, Languages Supported by AI Manga Translator",
+    "h3-2": "Manga Translation Without Altering the Original, Supported Translation Languages and Engines",
+    "h2-3": "Frequently Asked Questions - FAQ",
+    "h3-3": "How does AI Manga Translator ensure translation accuracy? Can I choose different translation engines? Is AI Manga Translator free to use? How does AI Manga Translator protect the original manga style?"
   }
 }

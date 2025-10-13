@@ -61,19 +61,19 @@ const props = defineProps({
 const isScrolled = ref(false)
 
 const handleScroll = () => {
-  if (process.client) {
+  if (import.meta.client) {
     isScrolled.value = window.scrollY > 50
   }
 }
 
 onMounted(() => {
-  if (process.client) {
+  if (import.meta.client) {
     window.addEventListener('scroll', handleScroll)
   }
 })
 
 onUnmounted(() => {
-  if (process.client) {
+  if (import.meta.client) {
     window.removeEventListener('scroll', handleScroll)
   }
 })
@@ -98,18 +98,10 @@ onUnmounted(() => {
     max-width: 100vw;
   }
 
-  // 滚动后的毛玻璃效果
+  // 滚动后的透明效果
   &.scrolled {
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-
-    // 暗色模式下的毛玻璃效果
-    html.dark & {
-      background-color: rgba(13, 13, 13, 0.8);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    }
+    background-color: var(--navbar-scrolled-bg);
+    box-shadow: var(--navbar-scrolled-shadow);
   }
 }
 

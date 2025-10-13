@@ -1,4 +1,4 @@
-import type { FooterType } from "~/types/footer";
+import type { FooterType } from "~/types/Footer";
 
 export const footerList:FooterType = {
     icon:'/img/logo.png',

@@ -1,7 +1,7 @@
 <template>
         <ul class="nav-herader">
             <!-- 移动端左侧显示更多 -->
-            <li class="phone-is-show left-mu">
+            <li class="phone-is-show left-mu" @click="showDrawer">
                 <i class="iconfont icon_nav_list"></i>
             </li>
             <li class="notphone-is-show" @click="toLink(item)" v-for="item in navBarList" :key="item.title" >
@@ -57,14 +57,17 @@
 </template>
 
 <script setup lang="ts">
-const {  setHtmlDIR,checkOutLang } = useLangInfo();
-const {  locale, setLocale, locales } = useI18n();
+const { checkOutLang } = useLangInfo();
+const {  locale, locales } = useI18n();
 import {websiteConfig} from '~/config/website'
 import { navBarList } from '~/config/navbar-config'
 import { useDark } from '@vueuse/core'
 import { Moon, Sunny } from '@element-plus/icons-vue'
 const { t } = useI18n();
 const { toLink } = useToLink()
+
+const emit = defineEmits(['showDrawer'])
+
 
  // 暗色模式
 const isDark = useDark({
@@ -86,6 +89,10 @@ const localeName = computed(() => {
 const changeLang = async (lang: any) => {
    await checkOutLang(lang)
 };
+
+const showDrawer = ()=>{
+    emit('showDrawer')
+}
 
 </script>
 <style lang="scss">
@@ -119,6 +126,7 @@ const changeLang = async (lang: any) => {
     }
 
     li {
+     -webkit-tap-highlight-color: transparent; // 移除移动端点击时的蓝色高亮
       display: flex;
       align-items: center;
       cursor: pointer;
